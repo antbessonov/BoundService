@@ -21,11 +21,17 @@ class BoundService : Service() {
 
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
+    override fun onCreate() {
+        super.onCreate()
+        log("onCreate")
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         coroutineScope.launch {
             for (i in Data.getDataList()) {
                 delay(1000)
                 textViewChanged?.invoke(i)
+                log("Data $i")
             }
             stopSelf()
         }
@@ -35,14 +41,20 @@ class BoundService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         coroutineScope.cancel()
+        log("onDestroy")
     }
 
     override fun onBind(p0: Intent?): IBinder {
+        log("onBind")
         return LocalBinder()
     }
 
     inner class LocalBinder : Binder() {
 
         fun getService() = this@BoundService
+    }
+
+    private fun log(message: String) {
+        Log.d("SERVICE_TAG", "BoundService: $message")
     }
 }
