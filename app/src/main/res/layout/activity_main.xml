@@ -10,13 +10,13 @@
         android:id="@+id/output_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/output"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/start_service_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="25"/>
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/start_service_btn"
